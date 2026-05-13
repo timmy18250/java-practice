@@ -1,33 +1,18 @@
-import java.util.Scanner;
-import java.util.Random;
-
+// Ch13_2, 例外的處理
 public class game {
-    public static void main(String[] args) {
-        
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-
-        int secretnumber = random.nextInt(100)+1;
-        int guess = 0;
-
-        System.out.println("🎮 歡迎來到終極密碼！我已經想好一個 1 到 100 的數字了。");
-
-        while (guess != secretnumber) {
-            System.out.println("請輸入你猜的數字");
-            guess = scanner.nextInt();
-
-            if (guess > secretnumber) {
-                System.out.println("太大了,再猜小一點");
-            }
-            else if (guess < secretnumber) {
-                System.out.println("太小了,再猜大一點");
-            }
-            else {
-                System.out.println("恭喜你！你猜對了，答案就是" + secretnumber + "!");
-            }
+    public static void main(String[] args){
+        try{               // 檢查這個程式區塊的程式碼
+            int arr[]=new int[6];
+            arr[5]=7;
+            System.out.println("目前陣列內容: " + java.util.Arrays.toString(arr));
         }
-
-        scanner.close();
-        System.out.println("遊戲結束,感謝遊玩");
+        catch(ArrayIndexOutOfBoundsException e){
+            // 如果拋出例外，便執行此區塊的程式碼
+            System.out.println("超出陣列範圍");
+        }
+        finally{           // 這個區塊的程式碼一定會執行
+            System.out.println("這行程式碼永遠都會被執行");
+        }
+        System.out.println("end of main()!!");
     }
 }
